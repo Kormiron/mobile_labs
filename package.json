@@ -18,5 +18,10 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
+  "product": {
+    "productName": "MobileDevelopment",
+    "organizationName": "Alexandr Kormich",
+    "organizationIdentifier": "ua.kpi.comsys.ip7315"
+  },
   "private": true
 }

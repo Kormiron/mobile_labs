@@ -1,34 +1,56 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Movies from "../Screens/Movies";
+import Description from "../screens/MovieDescription";
 import AddFilm from "../screens/AddFilm";
-import MovieDescription from "../screens/MovieDescription";
+import Pictures from "../screens/Pictures";
+import AddPic from "../screens/AddPic";
 
 const Stack = createStackNavigator();
 
-const MainStackNavigator = () => {
+const MainStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Movies"
+        name="Movies List"
         component={Movies}
         options={{
           headerTitle: "Movie list",
           headerRight: () => (
             <TouchableOpacity
               style={{ marginRight: 15 }}
-              onPress={() => navigation.navigate("Add Film")}
+              onPress={() => navigation.navigate("Add Movie")}
             >
               <MaterialCommunityIcons name="plus" size={35} />
             </TouchableOpacity>
           ),
         }}
       />
-      <Stack.Screen name="MovieDescription" component={MovieDescription} />
-      <Stack.Screen name="Add Film" component={AddFilm} />
+      <Stack.Screen name="Description" component={Description} />
+      <Stack.Screen name="Add Movie" component={AddFilm} />
     </Stack.Navigator>
   );
 };
 
-export { MainStackNavigator };
+const ImageStackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Images"
+        component={Pictures}
+        options={{
+          headerTitle: "Image layout",
+        }}
+      />
+      <Stack.Screen
+        name="ImageBrowser"
+        component={AddPic}
+        options={{ title: "Selected 0 files" }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+export { MainStackNavigator, ImageStackNavigator };
