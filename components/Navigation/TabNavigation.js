@@ -33,6 +33,16 @@ const BottomTabNavigation = () => {
           ),
         }}
       />
+      <Tab.Screen
+        name="Drawing"
+        component={DrawingStackNavigator}
+        options={{
+          tabBarLabel: "Drawing",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="draw" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
