@@ -38,7 +38,7 @@ const Movies = () => {
       ),
     });
   };
-  const moviesList = MoviesList.Search.map((data) => (
+  const moviesList = TitleSearch.map((data) => (
     <View key={data.imdbID}>
       <TouchableOpacity
         onPress={nav(navigation)}
