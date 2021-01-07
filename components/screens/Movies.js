@@ -4,10 +4,46 @@ import { MoviesList } from "../data/MoviesList";
 
 import { Container, Header, List, Text, Item, Input, Icon } from "native-base";
 
+const nav = ({ navigation }) =>
+  navigation.navigate("Description", {
+    id: item.imdbID,
+    poster: item.Poster,
+    title: item.Title,
+    year: item.Year,
+    genre: item.Genre,
+    director: item.Director,
+    actors: item.Actors,
+    country: item.Country,
+    lang: item.Language,
+    prod: item.Production,
+    released: item.Released,
+    runtime: item.Runtime,
+    awards: item.Awards,
+    rating: item.imdbRating,
+    plot: item.Plot,
+  });
+
 const Movies = () => {
+  const [search, setSearch] = useState({
+    AllMovies: MoviesList,
+    TitleSearch: MoviesList.Search,
+    AddedMovies: route.params,
+    MovieList: {},
+  });
+
+  const handleSearch = (text) => {
+    setSearch({
+      TitleSearch: search.MovieList.Search.filter((i) =>
+        i.Title.toLowerCase().includes(text.toLowerCase())
+      ),
+    });
+  };
   const moviesList = MoviesList.Search.map((data) => (
     <View key={data.imdbID}>
-      <TouchableOpacity style={{ backgroundColor: "#fff" }}>
+      <TouchableOpacity
+        onPress={nav(navigation)}
+        style={{ backgroundColor: "#fff" }}
+      >
         <Listdata thumbnail>
           <Left>
             <Thumbnail square source={data.Poster} style={{ height: 80 }} />
