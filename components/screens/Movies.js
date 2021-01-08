@@ -4,6 +4,8 @@ import { MoviesList } from "../data/MoviesList";
 
 import { Container, Header, List, Text, Item, Input, Icon } from "native-base";
 
+import { apiKeyMovie } from "./keys";
+
 const nav = ({ navigation }) =>
   navigation.navigate("Description", {
     id: item.imdbID,
@@ -38,7 +40,17 @@ const Movies = () => {
       ),
     });
   };
-  const moviesList = TitleSearch.map((data) => (
+
+  useEffect(async () => {
+    const api = `http://www.omdbapi.com/?apikey=${apiKeyMovie}&s=${search.MovieList.Search}&page=1`;
+    const res = await fetch(api);
+
+    setSearch({
+      MovieList: res,
+    });
+  });
+
+  const moviesList = search.TitleSearch.map((data) => (
     <View key={data.imdbID}>
       <TouchableOpacity
         onPress={nav(navigation)}
